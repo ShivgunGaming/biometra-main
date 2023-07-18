@@ -1,5 +1,7 @@
 # Getting Started with Create React App | Biometra
 
+![1500x500](https://github.com/ShivgunGaming/biometra-main/assets/102505925/432e5154-5049-449e-a976-ae7069c31cea)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
