@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { Button, Card } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Card,
+  Text,
+  Icon,
+  VStack,
+  Spacer,
+  Link,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 
@@ -19,38 +26,51 @@ function CreateAccount({ setWallet, setSeedPhrase }) {
   };
 
   return (
-    <>
-      <div className="content">
-        <div className="mnemonic">
-          <ExclamationCircleOutlined style={{ fontSize: "20px" }} />
-          <div>
-            Once you generate the seed phrase, save it securely in order to recover your wallet in the future.
-          </div>
-        </div>
-        <Button
-          className="frontPageButton"
-          type="primary"
-          onClick={generateWallet}
-        >
-          Generate Seed Phrase
-        </Button>
-        <Card className="seedPhraseContainer">
-          {newSeedPhrase && (
-            <pre style={{ whiteSpace: "pre-wrap" }}>{newSeedPhrase}</pre>
-          )}
-        </Card>
-        <Button
-          className="frontPageButton"
-          type="default"
-          onClick={setWalletAndMnemonic}
-        >
-          Open Your New Wallet
-        </Button>
-        <p className="frontPageBottom" onClick={() => navigate("/")}>
-          Back Home
-        </p>
+    <VStack spacing={4} align="center" p={4} className="content">
+      <div className="mnemonic">
+        <Icon boxSize={8} color="red.500" />
+        <div>Securely save generated seed phrase to recover wallet later!</div>
       </div>
-    </>
+      <Button
+        colorScheme="blue"
+        size="lg"
+        width="100%"
+        mb="3" // Adjust this value to control the space
+        py={2}
+        className="frontPageButton"
+        onClick={generateWallet}
+      >
+        Generate Seed Phrase
+      </Button>
+      {newSeedPhrase && (
+        <Card p={5} className="seedPhraseContainer" maxW="sm">
+          <Text as="pre" whiteSpace="pre-wrap" fontSize="sm">
+            {newSeedPhrase}
+          </Text>
+        </Card>
+      )}
+      <Button
+        colorScheme="blue"
+        size="lg"
+        width="100%"
+        mb="7"
+        onClick={setWalletAndMnemonic}
+        py={2}
+      >
+        Open Your New Wallet
+      </Button>
+      <Link
+        className="frontPageBottom"
+        onClick={() => navigate("/")}
+        color="blue.500"
+        fontWeight="bold"
+        textDecoration="underline"
+        _hover={{ color: "blue.700", textDecoration: "underline" }}
+      >
+        Back Home
+      </Link>
+      <Spacer />
+    </VStack>
   );
 }
 
