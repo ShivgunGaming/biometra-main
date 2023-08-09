@@ -1,36 +1,64 @@
 import React from "react";
+import { Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { Image } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
+
 import bioname from "../biometra.png";
 import bionameDark from "../biometradark.png";
-import { Button } from "antd";
-import { useNavigate } from "react-router-dom";
 
 function Home({ darkMode }) {
   const navigate = useNavigate();
   const logoImage = darkMode ? bionameDark : bioname;
 
   return (
-    <>
-      <div className="content">
-        <img src={logoImage} alt="logo" className="frontPageLogo" />
-        
-        <h4 className="h4">Welcome Back!</h4>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      textAlign="center"
+      height="100vh"
+      px="4" // Horizontal padding
+      my="4" // Margin on Y-axis
+      mx="4" // Margin on Y-axis
+      p="4"
+      borderRadius="lg"
+      boxShadow="md"
+    >
+        <Image src={logoImage} alt="logo" maxWidth="250px" mb="7" />
+
+        <Text fontSize="xl" fontWeight="bold" mb="4">
+          Welcome Back!
+        </Text>
+
         <Button
           onClick={() => navigate("/yourwallet")}
-          className="frontPageButton"
-          type="primary"
+          colorScheme="blue"
+          size="lg"
+          width="100%"
+          mb="2"
         >
           Create A Wallet
         </Button>
+
         <Button
           onClick={() => navigate("/recover")}
-          className="frontPageButton"
-          type="default"
+          size="lg"
+          width="100%"
+          variant="outline"
+          mb="2"
         >
           Sign In With Seed Phrase
         </Button>
-        <p className="frontPageBottom">Copyright © Biometra</p>
-      </div>
-    </>
+
+      <Box my="4"> {/* Added margin on Y-axis */}
+        <Text fontSize="sm">
+          Copyright © Biometra
+        </Text>
+      </Box>
+    </Box>
   );
 }
 
