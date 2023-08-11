@@ -27,15 +27,15 @@ function CreateAccount({ setWallet, setSeedPhrase }) {
 
   return (
     <VStack spacing={4} align="center" p={4} className="content">
-      <div className="mnemonic">
+      <VStack align="center">
         <Icon boxSize={8} color="red.500" />
-        <div>Securely save generated seed phrase to recover wallet later!</div>
-      </div>
+        <Text>Securely save generated seed phrase to recover wallet later!</Text>
+      </VStack>
       <Button
-        colorScheme="blue"
+        colorScheme="pink"
         size="lg"
         width="100%"
-        mb="3" // Adjust this value to control the space
+        mb={3} // Adjust this value to control the space
         py={2}
         className="frontPageButton"
         onClick={generateWallet}
@@ -50,10 +50,10 @@ function CreateAccount({ setWallet, setSeedPhrase }) {
         </Card>
       )}
       <Button
-        colorScheme="blue"
+        colorScheme="pink"
         size="lg"
         width="100%"
-        mb="7"
+        mb={7}
         onClick={setWalletAndMnemonic}
         py={2}
       >
