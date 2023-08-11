@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { BulbOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
+import { Button, Input, Text, Textarea, VStack, Icon } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 
@@ -31,37 +30,43 @@ function RecoverAccount({ setWallet, setSeedPhrase }) {
   };
 
   return (
-    <>
-      <div className="content">
-        <div className="mnemonic">
-          <BulbOutlined style={{ fontSize: "20px" }} />
-          <div>
-            Type your seed phrase in the field below to recover your wallet (it
-            should include 12 words separated with spaces)
-          </div>
+    <VStack spacing={4} align="center" p={4}>
+      <div className="mnemonic">
+        <Icon boxSize={8} color="red.500" />
+        <div>
+          {" "}
+          Type your seed phrase in the field below to recover your wallet (it
+          should include 12 words separated with spaces){" "}
         </div>
-        <TextArea
-          value={typedSeed}
-          onChange={seedAdjust}
-          rows={4}
-          className="seedPhraseContainer"
-        />
-        <Button
-          disabled={
-            typedSeed.split(" ").length !== 12 || typedSeed.slice(-1) === " "
-          }
-          className="frontPageRecoverButton"
-          type="primary"
-          onClick={recoverWallet}
-        >
-          Recover Wallet
-        </Button>
-        {nonValid && <p style={{ color: "red" }}>Invalid Seed Phrase</p>}
-        <p className="frontPageBottom" onClick={() => navigate("/")}>
-          Back Home
-        </p>
       </div>
-    </>
+      <Textarea
+        value={typedSeed}
+        onChange={seedAdjust}
+        rows={4}
+        variant="filled"
+        className="seedPhraseContainer"
+      />
+      <Button
+        disabled={
+          typedSeed.split(" ").length !== 12 || typedSeed.slice(-1) === " "
+        }
+        colorScheme="pink"
+        size="lg"
+        className="frontPageRecoverButton"
+        onClick={recoverWallet}
+      >
+        Recover Wallet
+      </Button>
+      {nonValid && <Text color="red.500">Invalid Seed Phrase</Text>}
+      <Text
+        color="blue.500"
+        textDecoration="underline"
+        cursor="pointer"
+        onClick={() => navigate("/")}
+      >
+        Back Home
+      </Text>
+    </VStack>
   );
 }
 
