@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Image, Box, Text } from "@chakra-ui/react";
+import { Button, Image, Box, Text, extendTheme } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { motion, useCycle } from "framer-motion"; // Import useCycle for toggling animations
 import bioname from "../biometra.png";
@@ -13,6 +13,26 @@ function Home({ darkMode }) {
   const [isSpinning, toggleIsSpinning] = useCycle(false, true);
 
   const logoImage = darkMode ? bionameDark : bioname;
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        ".shine-button:hover": {
+          background: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
+          backgroundSize: "200% 200%",
+          animation: "shine 1.5s infinite",
+        },
+        "@keyframes shine": {
+          "0%": {
+            backgroundPosition: "0% 0%",
+          },
+          "100%": {
+            backgroundPosition: "200% 200%",
+          },
+        },
+      },
+    },
+  });
 
   const handleImageClick = () => {
     if (!isBouncing) {
@@ -62,10 +82,11 @@ function Home({ darkMode }) {
 
       <Button
         onClick={() => navigate("/yourwallet")}
-        colorScheme="blue"
+        colorScheme="pink"
         size="lg"
         width="100%"
-        mb="7" // Add spacing here
+        mb="7"
+        className="shine-button"
       >
         Create Wallet
       </Button>
@@ -74,8 +95,10 @@ function Home({ darkMode }) {
         onClick={() => navigate("/recover")}
         size="lg"
         width="100%"
-        variant="solid"
-        mb="7" // Add spacing here
+        variant="outline"
+        colorScheme="pink"
+        mb="7"
+        className="shine-button"
       >
         Unlock Wallet
       </Button>
