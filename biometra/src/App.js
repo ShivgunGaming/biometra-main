@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { Select, Switch } from "antd";
+import React, { useState, useCallback } from "react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CreateAccount from "./components/CreateAccount.js";
 import RecoverAccount from "./components/RecoverAccount.js";
 import WalletView from "./components/WalletView.js";
-import logoLight from "./biologothree.png";
 import logoDark from "./biodarklogothree.png";
 import "@innovatrics/dot-auto-capture-ui/face";
 import "./App.css";
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true); // Set dark mode as default
+
   const [wallet, setWallet] = useState(null);
   const [seedPhrase, setSeedPhrase] = useState(null);
   const [selectedChain, setSelectedChain] = useState("0x1");
@@ -24,14 +24,6 @@ const App = () => {
   const handleError = useCallback((error) => {
     alert(error);
   }, []);
-
-  const handleDarkModeChange = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
-
-  const handleChainChange = (val) => {
-    setSelectedChain(val);
-  };
 
   const renderRoutes = () => {
     if (wallet && seedPhrase) {
@@ -56,54 +48,33 @@ const App = () => {
         <Route path="/" element={<Home darkMode={darkMode} />} />
         <Route
           path="/recover"
-          element={
-            <RecoverAccount
-              setSeedPhrase={setSeedPhrase}
-              setWallet={setWallet}
-            />
-          }
+          element={<RecoverAccount setSeedPhrase={setSeedPhrase} setWallet={setWallet} />}
         />
         <Route
           path="/yourwallet"
-          element={
-            <CreateAccount
-              setSeedPhrase={setSeedPhrase}
-              setWallet={setWallet}
-            />
-          }
+          element={<CreateAccount setSeedPhrase={setSeedPhrase} setWallet={setWallet} />}
         />
       </>
     );
   };
 
   return (
-    <div className={`App ${darkMode ? "dark" : "light"}`}>
-      <header>
-        <div className="headerContent">
-          <img
-            src={darkMode ? logoDark : logoLight}
-            className="headerLogo"
-            alt="logo"
-          />
-          <Switch
-            checked={darkMode}
-            onChange={handleDarkModeChange}
-            checkedChildren="Dark Mode"
-            unCheckedChildren="Light Mode"
-            className="themeToggler"
-          />
-          <Select
-            onChange={handleChainChange}
-            value={selectedChain}
-            options={[{ label: "Ethereum", value: "0x1" }]}
-            className={`dropdown ${darkMode ? "dark" : ""}`}
-          />
+    <ChakraProvider>
+      <div className={`App ${darkMode ? "dark" : "light"}`}>
+        <header>
+          <div className="headerContent">
+            <img
+              src={logoDark}
+              className="headerLogo"
+              alt="logo"
+            />
+          </div>
+        </header>
+        <div className="content">
+          <Routes>{renderRoutes()}</Routes>
         </div>
-      </header>
-      <div className="content">
-        <Routes>{renderRoutes()}</Routes>
       </div>
-    </div>
+    </ChakraProvider>
   );
 };
 
