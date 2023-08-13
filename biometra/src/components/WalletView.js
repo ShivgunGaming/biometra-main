@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Divider, List, Avatar, Spin, Tabs } from "antd";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
-import { Text } from '@chakra-ui/react';
-import { Tooltip } from '@chakra-ui/react';
+import { Stack } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
+import { Tooltip } from "@chakra-ui/react";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import logo from "../noImg.png";
@@ -205,11 +207,21 @@ function WalletView({
               label: "Transfer",
               children: (
                 <>
-                  <Text as="b" fontSize='2xl'>Native Balance</Text>
+                  <Image
+                    boxSize="50px"
+                    objectFit="cover"
+                    src="https://clipground.com/images/ethereum-png-12.png"
+                    alt="Dan Abramov"
+                    marginLeft="32"
+                  />
+                  <Text as="b" fontSize="2xl">
+                    Native Balance
+                  </Text>
                   <br />
                   <Text as="b">
                     {balance.toFixed(4)} {CHAINS_CONFIG[selectedChain].ticker}
                   </Text>
+                  <br />
                   <div className="sendRow">
                     <p style={{ width: "90px", textAlign: "left" }}>To:</p>
                     <Input
@@ -246,7 +258,8 @@ function WalletView({
                       <Spin />
                       {hash && (
                         <Tooltip label={hash}>
-                          <br /><br />
+                          <br />
+                          <br />
                           <Text as="i">Hover For Tx Hash</Text>
                         </Tooltip>
                       )}
