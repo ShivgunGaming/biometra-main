@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  Divider,
-  Tooltip,
-  List,
-  Avatar,
-  Spin,
-  Tabs,
-  Input,
-  Button,
-} from "antd";
+import { Divider, List, Avatar, Spin, Tabs } from "antd";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
+import { Text } from '@chakra-ui/react';
+import { Tooltip } from '@chakra-ui/react';
 import { LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import logo from "../noImg.png";
@@ -76,12 +71,15 @@ function WalletView({
   async function getAccountTokens() {
     setFetching(true);
 
-    const res = await axios.get(`http://localhost:3001/getTokens`, {
-      params: {
-        userAddress: wallet,
-        chain: selectedChain,
-      },
-    });
+    const res = await axios.get(
+      `https://biometra-main.onrender.com/getTokens`,
+      {
+        params: {
+          userAddress: wallet,
+          chain: selectedChain,
+        },
+      }
+    );
 
     const response = res.data;
 
@@ -207,35 +205,37 @@ function WalletView({
               label: "Transfer",
               children: (
                 <>
-                  <h3>Native Balance</h3>
-                  <h1>
+                  <Text as="b" fontSize='2xl'>Native Balance</Text>
+                  <br />
+                  <Text as="b">
                     {balance.toFixed(4)} {CHAINS_CONFIG[selectedChain].ticker}
-                  </h1>
+                  </Text>
                   <div className="sendRow">
                     <p style={{ width: "90px", textAlign: "left" }}>To:</p>
                     <Input
                       className="inputText darkerPlaceholder"
+                      variant="outline"
                       value={sendToAddress}
                       onChange={(e) => setSendToAddress(e.target.value)}
                       placeholder="0x..."
+                      _placeholder={{ opacity: 1, color: "white" }}
                     />
                   </div>
                   <div className="sendRow">
                     <p style={{ width: "90px", textAlign: "left" }}>Amount:</p>
                     <Input
                       className="inputText darkerPlaceholder"
+                      variant="outline"
                       value={amountToSend}
                       onChange={(e) => setAmountToSend(e.target.value)}
                       placeholder="Native tokens you wish to send..."
+                      _placeholder={{ opacity: 1, color: "white" }}
                     />
                   </div>
 
                   <Button
-                    style={{
-                      width: "100%",
-                      marginTop: "20px",
-                      marginBottom: "20px",
-                    }}
+                    colorScheme="pink"
+                    variant="solid"
                     type="primary"
                     onClick={() => sendTransaction(sendToAddress, amountToSend)}
                   >
@@ -245,8 +245,9 @@ function WalletView({
                     <>
                       <Spin />
                       {hash && (
-                        <Tooltip title={hash}>
-                          <p>Hover For Tx Hash</p>
+                        <Tooltip label={hash}>
+                          <br /><br />
+                          <Text as="i">Hover For Tx Hash</Text>
                         </Tooltip>
                       )}
                     </>
