@@ -207,20 +207,15 @@ function WalletView({
               label: "Transfer",
               children: (
                 <>
-                  <Image
-                    boxSize="50px"
-                    objectFit="cover"
-                    src="https://clipground.com/images/ethereum-png-12.png"
-                    alt="Dan Abramov"
-                    marginLeft="32"
-                  />
-                  <Text as="b" fontSize="2xl">
-                    Native Balance
-                  </Text>
-                  <br />
-                  <Text as="b">
-                    {balance.toFixed(4)} {CHAINS_CONFIG[selectedChain].ticker}
-                  </Text>
+                  <div>
+                    <Text as="b" fontSize="2xl">
+                      Native Balance
+                    </Text>
+                    <br />
+                    <Text as="b">
+                      {balance.toFixed(4)} {CHAINS_CONFIG[selectedChain].ticker}
+                    </Text>
+                  </div>
                   <br />
                   <div className="sendRow">
                     <p style={{ width: "90px", textAlign: "left" }}>To:</p>
@@ -233,6 +228,7 @@ function WalletView({
                       _placeholder={{ opacity: 1, color: "white" }}
                     />
                   </div>
+                  <br />
                   <div className="sendRow">
                     <p style={{ width: "90px", textAlign: "left" }}>Amount:</p>
                     <Input
@@ -240,11 +236,11 @@ function WalletView({
                       variant="outline"
                       value={amountToSend}
                       onChange={(e) => setAmountToSend(e.target.value)}
-                      placeholder="Native tokens you wish to send..."
+                      placeholder="Amount you wish to send..."
                       _placeholder={{ opacity: 1, color: "white" }}
                     />
                   </div>
-
+                  <br />
                   <Button
                     colorScheme="pink"
                     variant="solid"
