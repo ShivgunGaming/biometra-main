@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Divider, List, Avatar, Spin, Tabs } from "antd";
 import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
@@ -251,12 +252,10 @@ function WalletView({
                   </Button>
                   {processing && (
                     <>
-                      <Spin />
+                      <Spinner />
                       {hash && (
-                        <Tooltip label={hash}>
-                          <br />
-                          <br />
-                          <Text as="i">Hover For Tx Hash</Text>
+                        <Tooltip title={hash}>
+                          <Text as="i">Processing...</Text>
                         </Tooltip>
                       )}
                     </>
