@@ -4,6 +4,7 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
@@ -99,6 +100,26 @@ function WalletView({
     setFetching(false);
   }
 
+  const NFTDetails = ({ nftName, tokenId }) => {
+    return (
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        zIndex="1"
+        bg="white"
+        p="2"
+        opacity="0"
+        transition="opacity 0.3s"
+        _hover={{ opacity: 1 }}
+      >
+        <p>NFT Name: {nftName}</p>
+        <p>Token ID: {tokenId}</p>
+        {/* Add other details as needed */}
+      </Box>
+    );
+  };
+
   function logout() {
     setSeedPhrase(null);
     setWallet(null);
@@ -121,27 +142,34 @@ function WalletView({
       <div className="logoutButton" onClick={logout}>
         <LogoutOutlined />
       </div>
-      <div className="walletName">Wallet</div>
+      <Text as="cite" className="walletName">Wallet</Text>
       <Tooltip title={wallet}>
-        <div>
+        <Text as="b">
           {wallet.slice(0, 4)}...{wallet.slice(38)}
-        </div>
+        </Text>
       </Tooltip>
       <Divider />
       {fetching ? (
-        <Spin />
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="pink.500"
+        />
       ) : (
         <Tabs
           defaultActiveKey="1"
           className="walletView"
+          bg="pink.500"
           items={[
             {
               key: "3",
               label: "Tokens",
+              color: "pink.500",
               children: tokens ? (
                 <div className={darkMode ? "tokenRow dark" : "tokenRow"}>
                   <List
-                    bordered
+                    dotted
                     itemLayout="horizontal"
                     dataSource={tokens}
                     renderItem={(item, index) => (
@@ -152,23 +180,28 @@ function WalletView({
                       >
                         <List.Item.Meta
                           avatar={<Avatar src={item.logo || logo} />}
-                          title={
-                            <span className="tokenText">{item.symbol}</span>
-                          }
                           description={
-                            <span className="tokenText">{item.name}</span>
+                            <Text as="samp" className="tokenText">
+                              {item.symbol}
+                            </Text>
+                          }
+                          title={
+                            <Text as="b" className="tokenText">
+                              {item.name}
+                            </Text>
                           }
                         />
-                        <div className="tokenText">
+                        <Text className="tokenText" as="b">
                           {(
                             Number(item.balance) /
                             10 ** Number(item.decimals)
                           ).toFixed(2)}
-                        </div>
+                        </Text>
                       </List.Item>
                     )}
                   />
-                  <p className="frontPageBottom">Copyright © Biometra</p>
+                  <br />
+                  <Text as="b" className="frontPageBottom">Copyright © Biometra</Text>
                 </div>
               ) : (
                 <>
@@ -185,16 +218,20 @@ function WalletView({
                   {nfts.map((e, i) => (
                     <div key={i}>
                       {e && (
-                        <img
+                        <Image
                           key={i}
                           className="nftImage"
                           alt="nftImage"
                           src={e}
+                          boxSize="200px"
+                          marginLeft="16"
+                          marginY="5"
                         />
                       )}
                     </div>
                   ))}
-                  <p className="frontPageBottom">Copyright © Biometra</p>
+                  <br />
+                  <Text as="b" className="frontPageBottom">Copyright © Biometra</Text>
                 </>
               ) : (
                 <>
@@ -252,10 +289,15 @@ function WalletView({
                   </Button>
                   {processing && (
                     <>
-                      <Spinner />
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="pink.500"
+                      />
                       {hash && (
                         <Tooltip title={hash}>
-                          <Text as="i">Processing...</Text>
+                          <Text as="i">Processing Tx...</Text>
                         </Tooltip>
                       )}
                     </>
