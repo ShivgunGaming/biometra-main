@@ -31,14 +31,10 @@ function RecoverAccount({ setWallet, setSeedPhrase }) {
 
   return (
     <VStack spacing={4} align="center" p={4}>
-      <div className="mnemonic">
+      <VStack align="center">
         <Icon boxSize={8} color="red.500" />
-        <div>
-          {" "}
-          Type your seed phrase in the field below to recover your wallet (it
-          should include 12 words separated with spaces){" "}
-        </div>
-      </div>
+        <Text>Enter your 12 word seed phrase, seperated by spaces below to log in!</Text>
+      </VStack>
       <Textarea
         value={typedSeed}
         onChange={seedAdjust}
@@ -57,11 +53,13 @@ function RecoverAccount({ setWallet, setSeedPhrase }) {
       >
         Recover Wallet
       </Button>
-      {nonValid && <Text color="red.500">Invalid Seed Phrase</Text>}
+      {nonValid && <Text color="red.500" fontWeight="bold">Invalid Seed Phrase</Text>}
       <Text
-        color="blue.500"
+        color="pink.500"
         textDecoration="underline"
+        fontWeight="bold"
         cursor="pointer"
+        _hover={{ color: "pink.700", textDecoration: "underline" }}
         onClick={() => navigate("/")}
       >
         Back Home
