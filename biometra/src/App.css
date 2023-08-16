@@ -256,14 +256,20 @@ header {
 
 .walletView::-webkit-scrollbar {
   width: 0.5em;
+  color: pink;
+  background-color: pink;
 }
 
 .walletView::-webkit-scrollbar-thumb {
   background-color: transparent;
+  color: pink;
+  background-color: pink;
 }
 
 .walletView::-webkit-scrollbar-track {
   background-color: transparent;
+  color: pink;
+  background-color: pink;
 }
 
 .walletView .Tokens {
