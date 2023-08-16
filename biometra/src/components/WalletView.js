@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Divider, List, Avatar, Spin, Tabs } from "antd";
 import { Button, ButtonGroup } from "@chakra-ui/react";
+import { TabIndicator } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
@@ -34,6 +35,12 @@ function WalletView({
   const [hash, setHash] = useState(null);
 
   async function sendTransaction(to, amount) {
+
+    if (!to || !amount) {
+      console.error("Invalid input for sending transaction.");
+      return;
+    }
+
     const chain = CHAINS_CONFIG[selectedChain];
 
     const provider = new ethers.JsonRpcProvider(chain.rpcUrl);
@@ -169,7 +176,6 @@ function WalletView({
               children: tokens ? (
                 <div className={darkMode ? "tokenRow dark" : "tokenRow"}>
                   <List
-                    dotted
                     itemLayout="horizontal"
                     dataSource={tokens}
                     renderItem={(item, index) => (
@@ -241,64 +247,69 @@ function WalletView({
               ),
             },
             {
-              key: "1",
-              label: "Transfer",
-              children: (
-                <>
-                  <div>
-                    <Text as="b" fontSize="2xl">
-                      Native Balance
-                    </Text>
-                    <br />
-                    <Text as="b">
-                      {balance.toFixed(4)} {CHAINS_CONFIG[selectedChain].ticker}
-                    </Text>
-                  </div>
+            key: "1",
+            label: "Transfer",
+            children: (
+              <>
+                <div>
+                  <Text as="b" fontSize="2xl">
+                    Native Balance
+                  </Text>
                   <br />
-                  <div className="sendRow">
-                    <p style={{ width: "90px", textAlign: "left" }}>To:</p>
-                    <Input
-                      className="inputText darkerPlaceholder"
-                      variant="outline"
-                      value={sendToAddress}
-                      onChange={(e) => setSendToAddress(e.target.value)}
-                      placeholder="0x..."
-                      _placeholder={{ opacity: 1, color: "white" }}
+                  <Text as="b">
+                    {balance.toFixed(4)}{" "}
+                    {CHAINS_CONFIG[selectedChain].ticker}
+                  </Text>
+                </div>
+                <br />
+                <div className="sendRow">
+                  <p style={{ width: "90px", textAlign: "left" }}>To:</p>
+                  <Input
+                    className="inputText darkerPlaceholder"
+                    variant="outline"
+                    errorBorderColor='pink.900'
+                    focusBorderColor='pink.500'
+                    value={sendToAddress || ""}
+                    onChange={(e) => setSendToAddress(e.target.value)}
+                    placeholder="0x..."
+                    _placeholder={{ opacity: 1, color: "white" }}
+                  />
+                </div>
+                <br />
+                <div className="sendRow">
+                  <p style={{ width: "90px", textAlign: "left" }}>Amount:</p>
+                  <Input
+                    className="inputText darkerPlaceholder"
+                    variant="outline"
+                    errorBorderColor='pink.900'
+                    focusBorderColor='pink.500'
+                    value={amountToSend || ""}
+                    onChange={(e) => setAmountToSend(e.target.value)}
+                    placeholder="Amount you wish to send..."
+                    _placeholder={{ opacity: 1, color: "white" }}
+                  />
+                </div>
+                <br />
+                <Button
+                  colorScheme="pink"
+                  variant="solid"
+                  type="primary"
+                  onClick={() => sendTransaction(sendToAddress, amountToSend)}
+                >
+                  Send Tokens
+                </Button>
+                {processing && (
+                  <>
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="pink.500"
                     />
-                  </div>
-                  <br />
-                  <div className="sendRow">
-                    <p style={{ width: "90px", textAlign: "left" }}>Amount:</p>
-                    <Input
-                      className="inputText darkerPlaceholder"
-                      variant="outline"
-                      value={amountToSend}
-                      onChange={(e) => setAmountToSend(e.target.value)}
-                      placeholder="Amount you wish to send..."
-                      _placeholder={{ opacity: 1, color: "white" }}
-                    />
-                  </div>
-                  <br />
-                  <Button
-                    colorScheme="pink"
-                    variant="solid"
-                    type="primary"
-                    onClick={() => sendTransaction(sendToAddress, amountToSend)}
-                  >
-                    Send Tokens
-                  </Button>
-                  {processing && (
-                    <>
-                      <Spinner
-                        thickness="4px"
-                        speed="0.65s"
-                        emptyColor="gray.200"
-                        color="pink.500"
-                      />
-                      {hash && (
-                        <Tooltip title={hash}>
-                          <Text as="i">Processing Tx...</Text>
-                        </Tooltip>
+                    {hash && (
+                      <Tooltip title={hash}>
+                        <Text as="i">Processing Tx...</Text>
+                      </Tooltip>
                       )}
                     </>
                   )}
@@ -307,6 +318,7 @@ function WalletView({
             },
           ]}
         />
+        
       )}
     </div>
   );
