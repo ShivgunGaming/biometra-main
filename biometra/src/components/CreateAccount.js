@@ -29,11 +29,12 @@ function CreateAccount({ setWallet, setSeedPhrase }) {
     <VStack spacing={4} align="center" p={4} className="content">
       <VStack align="center">
         <Icon boxSize={8} color="red.500" />
-        <Text>Securely save generated seed phrase to recover wallet later!</Text>
+        <Text>Securely save generated seed phrase to log in later!</Text>
       </VStack>
       <Button
         colorScheme="pink"
         size="lg"
+        variant="solid"
         width="100%"
         mb={3} // Adjust this value to control the space
         py={2}
@@ -52,6 +53,7 @@ function CreateAccount({ setWallet, setSeedPhrase }) {
       <Button
         colorScheme="pink"
         size="lg"
+        variant="outline"
         width="100%"
         mb={7}
         onClick={setWalletAndMnemonic}
@@ -62,10 +64,10 @@ function CreateAccount({ setWallet, setSeedPhrase }) {
       <Link
         className="frontPageBottom"
         onClick={() => navigate("/")}
-        color="blue.500"
+        color="pink.500"
         fontWeight="bold"
         textDecoration="underline"
-        _hover={{ color: "blue.700", textDecoration: "underline" }}
+        _hover={{ color: "pink.700", textDecoration: "underline" }}
       >
         Back Home
       </Link>
