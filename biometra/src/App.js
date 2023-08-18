@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
+import { Select } from "antd";
 import Home from "./components/Home";
 import CreateAccount from "./components/CreateAccount.js";
 import RecoverAccount from "./components/RecoverAccount.js";
@@ -25,6 +26,10 @@ const App = () => {
     alert(error);
   }, []);
 
+  const handleChainChange = (val) => {
+    setSelectedChain(val);
+  };
+
   const renderRoutes = () => {
     if (wallet && seedPhrase) {
       return (
@@ -48,25 +53,40 @@ const App = () => {
         <Route path="/" element={<Home darkMode={darkMode} />} />
         <Route
           path="/recover"
-          element={<RecoverAccount setSeedPhrase={setSeedPhrase} setWallet={setWallet} />}
+          element={
+            <RecoverAccount
+              setSeedPhrase={setSeedPhrase}
+              setWallet={setWallet}
+            />
+          }
         />
         <Route
           path="/yourwallet"
-          element={<CreateAccount setSeedPhrase={setSeedPhrase} setWallet={setWallet} />}
+          element={
+            <CreateAccount
+              setSeedPhrase={setSeedPhrase}
+              setWallet={setWallet}
+            />
+          }
         />
       </>
     );
   };
 
   return (
-    <ChakraProvider>
       <div className={`App ${darkMode ? "dark" : "light"}`}>
         <header>
           <div className="headerContent">
-            <img
-              src={logoDark}
-              className="headerLogo"
-              alt="logo"
+            <img src={logoDark} className="headerLogo" alt="logo" />
+            <Select
+              onChange={handleChainChange}
+              value={selectedChain}
+              options={[
+                { label: "Ethereum", value: "0x1" },
+                { label: "Avalanche", value: "0xa86a" },
+                { label: "Binance", value: "0x38"},
+              ]}
+              className={`dropdown ${darkMode ? "dark" : ""}`}
             />
           </div>
         </header>
@@ -74,7 +94,6 @@ const App = () => {
           <Routes>{renderRoutes()}</Routes>
         </div>
       </div>
-    </ChakraProvider>
   );
 };
 
