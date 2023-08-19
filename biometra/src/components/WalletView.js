@@ -95,7 +95,7 @@ function WalletView({
     setFetching(true);
 
     const res = await axios.get(
-      `https://biometra-main.onrender.com/getTokens`,
+      `Sensitive Info`,
       {
         params: {
           userAddress: wallet,
