@@ -35,7 +35,6 @@ function WalletView({
   const [hash, setHash] = useState(null);
 
   async function sendTransaction(to, amount) {
-
     if (!to || !amount) {
       console.error("Invalid input for sending transaction.");
       return;
@@ -78,6 +77,19 @@ function WalletView({
       setSendToAddress(null);
     }
   }
+
+  // You can define this in your existing styles or in a separate file
+  const customTabStyles = {
+    ".ant-tabs-tab": {
+      backgroundColor: "pink",
+      color: "pink",
+    },
+
+    ".ant-tabs-tab-active": {
+      backgroundColor: "pink",
+      color: "pink",
+    },
+  };
 
   async function getAccountTokens() {
     setFetching(true);
@@ -149,7 +161,9 @@ function WalletView({
       <div className="logoutButton" onClick={logout}>
         <LogoutOutlined />
       </div>
-      <Text as="cite" className="walletName">Wallet</Text>
+      <Text as="cite" className="walletName">
+        Wallet
+      </Text>
       <Tooltip title={wallet}>
         <Text as="b">
           {wallet.slice(0, 4)}...{wallet.slice(38)}
@@ -167,12 +181,11 @@ function WalletView({
         <Tabs
           defaultActiveKey="1"
           className="walletView"
-          bg="pink.500"
+          css={customTabStyles}
           items={[
             {
               key: "3",
               label: "Tokens",
-              color: "pink.500",
               children: tokens ? (
                 <div className={darkMode ? "tokenRow dark" : "tokenRow"}>
                   <List
@@ -207,7 +220,9 @@ function WalletView({
                     )}
                   />
                   <br />
-                  <Text as="b" className="frontPageBottom">Copyright © Biometra</Text>
+                  <Text as="b" className="frontPageBottom">
+                    Copyright © Biometra
+                  </Text>
                 </div>
               ) : (
                 <>
@@ -237,7 +252,9 @@ function WalletView({
                     </div>
                   ))}
                   <br />
-                  <Text as="b" className="frontPageBottom">Copyright © Biometra</Text>
+                  <Text as="b" className="frontPageBottom">
+                    Copyright © Biometra
+                  </Text>
                 </>
               ) : (
                 <>
@@ -247,70 +264,66 @@ function WalletView({
               ),
             },
             {
-            key: "1",
-            label: "Transfer",
-            children: (
-              <>
-                <div>
-                  <Text as="b" fontSize="2xl">
-                    Native Balance
-                  </Text>
+              key: "1",
+              label: "Transfer",
+              children: (
+                <>
+                  <div>
+                    <Text as="b" fontSize="2xl">
+                      Native Balance
+                    </Text>
+                    <br />
+                    <Text as="b">
+                      {balance.toFixed(4)} {CHAINS_CONFIG[selectedChain].ticker}
+                    </Text>
+                  </div>
                   <br />
-                  <Text as="b">
-                    {balance.toFixed(4)}{" "}
-                    {CHAINS_CONFIG[selectedChain].ticker}
-                  </Text>
-                </div>
-                <br />
-                <div className="sendRow">
-                  <p style={{ width: "90px", textAlign: "left" }}>To:</p>
-                  <Input
-                    className="inputText darkerPlaceholder"
-                    variant="outline"
-                    errorBorderColor='pink.900'
-                    focusBorderColor='pink.500'
-                    value={sendToAddress || ""}
-                    onChange={(e) => setSendToAddress(e.target.value)}
-                    placeholder="0x..."
-                    _placeholder={{ opacity: 1, color: "white" }}
-                  />
-                </div>
-                <br />
-                <div className="sendRow">
-                  <p style={{ width: "90px", textAlign: "left" }}>Amount:</p>
-                  <Input
-                    className="inputText darkerPlaceholder"
-                    variant="outline"
-                    errorBorderColor='pink.900'
-                    focusBorderColor='pink.500'
-                    value={amountToSend || ""}
-                    onChange={(e) => setAmountToSend(e.target.value)}
-                    placeholder="Amount you wish to send..."
-                    _placeholder={{ opacity: 1, color: "white" }}
-                  />
-                </div>
-                <br />
-                <Button
-                  colorScheme="pink"
-                  variant="solid"
-                  type="primary"
-                  onClick={() => sendTransaction(sendToAddress, amountToSend)}
-                >
-                  Send Tokens
-                </Button>
-                {processing && (
-                  <>
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="pink.500"
+                  <div className="sendRow">
+                    <p style={{ width: "90px", textAlign: "left" }}>To:</p>
+                    <Input
+                      className="inputText darkerPlaceholder"
+                      variant="outline"
+                      errorBorderColor="pink.900"
+                      focusBorderColor="pink.500"
+                      value={sendToAddress || ""}
+                      onChange={(e) => setSendToAddress(e.target.value)}
+                      placeholder="0x..."
+                      _placeholder={{ opacity: 1, color: "white" }}
                     />
-                    {hash && (
-                      <Tooltip title={hash}>
-                        <Text as="i">Processing Tx...</Text>
-                      </Tooltip>
-                      )}
+                  </div>
+                  <br />
+                  <div className="sendRow">
+                    <p style={{ width: "90px", textAlign: "left" }}>Amount:</p>
+                    <Input
+                      className="inputText darkerPlaceholder"
+                      variant="outline"
+                      errorBorderColor="pink.900"
+                      focusBorderColor="pink.500"
+                      value={amountToSend || ""}
+                      onChange={(e) => setAmountToSend(e.target.value)}
+                      placeholder="Amount you wish to send..."
+                      _placeholder={{ opacity: 1, color: "white" }}
+                    />
+                  </div>
+                  <br />
+                  <Button
+                    colorScheme="pink"
+                    variant="solid"
+                    type="primary"
+                    onClick={() => sendTransaction(sendToAddress, amountToSend)}
+                  >
+                    Send Tokens
+                  </Button>
+                  <br />
+                  <br />
+                  {processing && (
+                    <>
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="pink.500"
+                      />
                     </>
                   )}
                 </>
@@ -318,7 +331,6 @@ function WalletView({
             },
           ]}
         />
-        
       )}
     </div>
   );
