@@ -112,13 +112,11 @@ header {
 .headerLogo {
   height: 50px;
   margin-left: 20px;
+  margin-right: -20px;
 }
 
-.dropdown .ant-select-selector,
-.dropdown .ant-select-selector:hover,
-.dropdown .ant-select-selector:focus {
-  background-color: #ffffff;
-  color: #333333;
+.dropdown {
+  margin-left: -30px /* Adjust this value as needed */
 }
 
 .App.dark .dropdown .ant-select-selector,
@@ -128,32 +126,11 @@ header {
   color: #ffffff;
 }
 
-.dropdown .ant-select-selector .ant-select-selection-item,
-.dropdown .ant-select-selector .ant-select-arrow svg {
-  color: #333333;
-}
-
 .App.dark .dropdown .ant-select-selector .ant-select-selection-item,
 .App.dark .dropdown .ant-select-selector .ant-select-arrow svg {
   color: #ffffff;
 }
 
-/* Light Mode */
-.dropdown .ant-select-item-option-content {
-  background-color: #ffffff;
-  color: #333333;
-}
-
-/* Dark Mode */
-.App.dark .dropdown .ant-select-item-option-content {
-  background-color: #333333;
-  color: #ffffff;
-}
-
-/* Add this CSS rule to set the dark background color for the dropdown list in dark mode */
-.dropdown.dark .ant-select-dropdown {
-  background-color: #333333;
-}
 
 /* Add this CSS rule to set the text color for the dropdown options in dark mode */
 .dropdown.dark .ant-select-dropdown-menu-item {
@@ -254,22 +231,85 @@ header {
   color: #333333;
 }
 
+.ant-tabs-ink-bar {
+  border-bottom: 4px solid #d53f8c;
+}
+
+/* Tab-specific styles */
+.walletView .ant-tabs-tab {
+  color: #d53f8c;
+}
+
+.walletView .ant-tabs-tab:hover {
+  color: #d53f8c; /* Text color on hover */
+}
+
+.walletView .ant-tabs-tab-active {
+  color: #d53f8c;
+}
+
+/* Customize the color for Tokens tab */
+.walletView .Tokens {
+  color: #d53f8c; /* Adjust as needed */
+}
+
+/* Dark mode styles */
+.App.dark .walletView .Tokens {
+  color: #d53f8c; /* Adjust as needed */
+}
+
+.App.dark .walletView {
+  color: #d53f8c; /* Adjust as needed */
+}
+
+.walletView .ant-tabs-nav .ant-tabs-tab-active {
+  color: #d53f8c; /* Your desired active tab color */
+  text-emphasis-color: #d53f8c;
+}
+
+.walletView .ant-tabs-nav .ant-tabs-tab-active,
+.walletView .ant-tabs-nav .ant-tabs-tab-active:hover {
+  color: #d53f8c; /* Active tab text color */
+}
+
+.walletView .ant-tabs-nav .ant-tabs-tab-active,
+.walletView .ant-tabs-nav .ant-tabs-tab-active:hover {
+  color: #d53f8c; /* Active tab text color */
+}
+
+/* Change tab text color when tab is clicked */
+.walletView .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #d53f8c; /* Active tab text color */
+}
+
+.walletView .ant-tabs .ant-tabs-tab .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #d53f8c;
+}
+
+.walletView .ant-tabs-nav .ant-tabs-tab-active,
+.walletView .ant-tabs-nav .ant-tabs-tab-active:hover {
+  color: #d53f8c; /* Active tab text color */
+}
+
+/* Change tab text color when tab is clicked */
+:where(.css-15rg2km).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #d53f8c; /* Active tab text color */
+}
+
+:where(.css-dev-only-do-not-override-15rg2km).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #d53f8c; /* Active tab text color */
+}
+
 .walletView::-webkit-scrollbar {
   width: 0.5em;
-  color: pink;
-  background-color: pink;
 }
 
 .walletView::-webkit-scrollbar-thumb {
   background-color: transparent;
-  color: pink;
-  background-color: pink;
 }
 
 .walletView::-webkit-scrollbar-track {
   background-color: transparent;
-  color: pink;
-  background-color: pink;
 }
 
 .walletView .Tokens {
