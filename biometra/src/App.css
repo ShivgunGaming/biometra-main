@@ -134,7 +134,7 @@ header {
 
 /* Add this CSS rule to set the text color for the dropdown options in dark mode */
 .dropdown.dark .ant-select-dropdown-menu-item {
-  color: #333333;
+  color: #fffbe6;
 }
 
 
@@ -174,7 +174,6 @@ header {
 }
 
 .App.dark .mnemonic {
-  color: #999999;
   background: #333333;
   border-color: #666666;
 }
@@ -428,3 +427,50 @@ header {
   transform: translateX(-50%) translateY(-10px);
 }
 
+/* Add this CSS rule to set the background and text color for the dropdown in dark mode */
+.App.dark .dropdown .ant-select-selector,
+.App.dark .dropdown .ant-select-selector:hover,
+.App.dark .dropdown .ant-select-selector:focus {
+  background-color: black;
+  color: white;
+}
+
+/* Add this CSS rule to set the text color for the dropdown options in dark mode */
+.dropdown.dark .ant-select-dropdown-menu-item {
+  color: white;
+}
+
+/* Style the dropdown on focus (when clicked) */
+.App.dark .dropdown .ant-select-selector:focus {
+  background-color: black;
+  color: white;
+}
+
+/* Style the text color for dropdown options when the dropdown is clicked */
+.dropdown.dark .ant-select-dropdown-menu-item {
+  color: white;
+}
+
+/* Optional: Add a rule to style the options when hovered in dark mode */
+.dropdown.dark .ant-select-dropdown-menu-item:hover {
+  background-color: #333333;
+}
+
+/* Style the dropdown menu when expanded */
+.dropdown.dark .ant-select-dropdown {
+  background-color: black;
+}
+
+/* Style the text color for dropdown menu options when expanded */
+.dropdown.dark .ant-select-dropdown-menu-item {
+  color: white;
+}
+
+/* Optional: Add a rule to style the options in the expanded dropdown when hovered */
+.dropdown.dark .ant-select-dropdown-menu-item:hover {
+  background-color: #333333;
+}
+
+.ant-select-selection {
+  background-color: transparent;
+}
