@@ -474,3 +474,11 @@ header {
 .ant-select-selection {
   background-color: transparent;
 }
+
+:where(.css-dev-only-do-not-override-15rg2km).ant-select-dropdown .ant-select-item {
+  color: white;
+}
+
+:where(.css-15rg2km).ant-select-dropdown .ant-select-item {
+  color: white;
+}
