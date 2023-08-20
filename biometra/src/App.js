@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, color } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 import { Select } from "antd";
+import { motion } from "framer-motion";
 import Home from "./components/Home";
 import CreateAccount from "./components/CreateAccount.js";
 import RecoverAccount from "./components/RecoverAccount.js";
@@ -12,7 +13,6 @@ import "./App.css";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true); // Set dark mode as default
-
   const [wallet, setWallet] = useState(null);
   const [seedPhrase, setSeedPhrase] = useState(null);
   const [selectedChain, setSelectedChain] = useState("0x1");
@@ -28,6 +28,11 @@ const App = () => {
 
   const handleChainChange = (val) => {
     setSelectedChain(val);
+  };
+
+  const headerLogoVariants = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
   };
 
   const renderRoutes = () => {
@@ -74,17 +79,28 @@ const App = () => {
   };
 
   return (
+    <ChakraProvider>
       <div className={`App ${darkMode ? "dark" : "light"}`}>
         <header>
           <div className="headerContent">
-            <img src={logoDark} className="headerLogo" alt="logo" />
+            {/* Apply the animation to the headerLogo */}
+            <motion.img
+              src={logoDark}
+              className="headerLogo"
+              alt="logo"
+              variants={headerLogoVariants}
+              initial="initial"
+              animate="animate"
+            />
             <Select
+            dropdownStyle={{ backgroundColor: '#333333', color: '#ffffff' }}
+            style={{color: '#fffff'}}
               onChange={handleChainChange}
               value={selectedChain}
               options={[
                 { label: "Ethereum", value: "0x1" },
                 { label: "Avalanche", value: "0xa86a" },
-                { label: "Binance", value: "0x38"},
+                { label: "Binance", value: "0x38" },
               ]}
               className={`dropdown ${darkMode ? "dark" : ""}`}
             />
@@ -94,6 +110,7 @@ const App = () => {
           <Routes>{renderRoutes()}</Routes>
         </div>
       </div>
+    </ChakraProvider>
   );
 };
 
