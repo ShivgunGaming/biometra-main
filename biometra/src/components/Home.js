@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Image, Box, Text, extendTheme } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { motion, useCycle } from "framer-motion"; // Import useCycle for toggling animations
+import { motion, useCycle } from "framer-motion";
 import bioname from "../biometra.png";
 import bionameDark from "../biometradark.png";
+
+// Extract the bouncing and spinning animations into constants
+const bouncingAnimation = { scale: [1, 1.2, 1] };
+const spinningAnimation = { rotate: [0, 360] };
+
+// Define animation transitions
+const animationTransitions = [
+  { type: "spring", stiffness: 300, damping: 10 },
+  { duration: 3 }, // Spin duration
+];
 
 function Home({ darkMode }) {
   const navigate = useNavigate();
   const [isBouncing, setIsBouncing] = useState(false);
-
-  // Use useCycle to toggle between spinning and not spinning
   const [isSpinning, toggleIsSpinning] = useCycle(false, true);
-
   const logoImage = darkMode ? bionameDark : bioname;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBouncing(true);
+      setTimeout(() => {
+        setIsBouncing(false);
+      }, 5000); // Bounce duration
+    }, 5000); // Repeat every 5 seconds
+
+    return () => clearInterval(interval); // Clear the interval on unmount
+  }, []);
 
   const theme = extendTheme({
     styles: {
@@ -65,19 +83,16 @@ function Home({ darkMode }) {
         onClick={handleImageClick}
         initial={false}
         animate={[
-          { scale: isBouncing ? 1.2 : 1 }, // Bounce animation
-          { rotate: isSpinning ? 360 : 0 }, // Spin animation
+          isBouncing && bouncingAnimation,
+          isSpinning && spinningAnimation,
         ]}
-        transition={[
-          { type: "spring", stiffness: 300, damping: 10 },
-          { duration: 1 }, // Spin duration
-        ]}
+        transition={animationTransitions}
       >
         <Image src={logoImage} alt="logo" maxWidth="220px" mb="7" />
       </motion.div>
 
       <Text fontSize="xl" fontWeight="bold" mb="4">
-        Welcome Back!
+        Welcome!
       </Text>
 
       <Button
@@ -104,8 +119,6 @@ function Home({ darkMode }) {
       </Button>
 
       <Box my="4">
-        {" "}
-        {/* Added margin on Y-axis */}
         <Text fontSize="sm" fontWeight="bold">
           Copyright © Biometra
         </Text>
