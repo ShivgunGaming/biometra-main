@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, color } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 import { Select } from "antd";
 import { motion } from "framer-motion";
@@ -93,6 +93,8 @@ const App = () => {
               animate="animate"
             />
             <Select
+            dropdownStyle={{ backgroundColor: '#333333', color: '#ffffff' }}
+            style={{color: '#fffff'}}
               onChange={handleChainChange}
               value={selectedChain}
               options={[
