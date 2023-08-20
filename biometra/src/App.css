@@ -232,7 +232,7 @@ header {
 }
 
 .ant-tabs-ink-bar {
-  border-bottom: 4px solid #d53f8c;
+  border-bottom: 2px solid pink;
 }
 
 /* Tab-specific styles */
@@ -360,3 +360,71 @@ header {
 .dark .token {
   color: #ffffff; /* Text color for dark mode */
 }
+
+/* External CSS stylesheet or style block in your JSX code */
+@keyframes glowing {
+  0%, 100% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0) 60%);
+  }
+  25% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 60%);
+  }
+  50% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0) 60%);
+  }
+  75% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 60%);
+  }
+}
+
+.nftImage {
+  border: 10px solid #f0f0f0;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.nftImage::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0) 60%);
+  animation: glowing 6s infinite; /* Apply the glowing animation */
+}
+
+.noTokens {
+  color: red;
+  font-weight: bold;
+}
+
+/* External CSS stylesheet or style block in your JSX code */
+/* ... your existing styles ... */
+
+.nftImageContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.nftTooltip {
+  position: absolute;
+  bottom: -100%; /* Position the tooltip below the image */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.nftImageContainer:hover .nftTooltip {
+  bottom: 10%; /* Move the tooltip above the image */
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
