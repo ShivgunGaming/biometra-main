@@ -95,7 +95,7 @@ function WalletView({
     setFetching(true);
 
     const res = await axios.get(
-      `Sensitive Info`,
+      ``,
       {
         params: {
           userAddress: wallet,
@@ -237,7 +237,7 @@ function WalletView({
               children: nfts ? (
                 <>
                   {nfts.map((e, i) => (
-                    <div key={i}>
+                    <div key={i} className="nftContainer">
                       {e && (
                         <Image
                           key={i}
@@ -258,7 +258,9 @@ function WalletView({
                 </>
               ) : (
                 <>
-                  <span>You seem to not have any tokens yet </span>
+                  <span className="noTokens">
+                    You seem to not have any tokens yet{" "}
+                  </span>
                   <p className="frontPageBottom">Copyright © Biometra</p>
                 </>
               ),
