@@ -226,7 +226,7 @@ function WalletView({
                 </div>
               ) : (
                 <>
-                  <span>You seem to not have any tokens yet</span>
+                  <Text as="b">You seem to not have any tokens yet</Text>
                   <p className="frontPageBottom">Copyright © Biometra</p>
                 </>
               ),
