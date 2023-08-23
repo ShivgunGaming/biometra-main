@@ -128,11 +128,15 @@ yarn start
 
 ![Biometra Home Dark Theme](https://github.com/ShivgunGaming/biometra.net/assets/102505925/48fb2aeb-1ae5-4697-8e96-8ed27977250b)
 
+![Biometra New UI Home](https://github.com/ShivgunGaming/biometra-main/assets/102505925/a8f4cf45-69e8-4d62-86e4-417edcb5f0de)
+
 🏠 `<Home />` : **Home page for Biometra. Buttons to create or recover wallet.**
 
 ![createwallet](https://github.com/ShivgunGaming/biometra.net/assets/102505925/043ce33e-64fe-45d3-afc7-f3cf8d6efbe3)
 
 ![biometra create dark](https://github.com/ShivgunGaming/biometra.net/assets/102505925/a5a5c8be-60ad-4528-804e-2f01e83aa440)
+
+![Biometra New UI CA](https://github.com/ShivgunGaming/biometra-main/assets/102505925/0301066c-54df-4206-aa2f-8ac6d567efbe)
 
 🐉 `<CreateWallet />` : **The CreateWallet component for Biometra.**
 
@@ -140,11 +144,15 @@ yarn start
 
 ![recoverwalletdark](https://github.com/ShivgunGaming/biometra.net/assets/102505925/000a489b-ab47-40a1-a9d6-8f89c0280ce7)
 
+![Biometra New UI RA](https://github.com/ShivgunGaming/biometra-main/assets/102505925/d8fd8cd3-c7a7-4dfe-a27f-0a6e55686aca)
+
 🔎 `<RecoverWallet />` : **The RecoverWallet component for Biometra.**
 
 ![tokens](https://github.com/ShivgunGaming/biometra.net/assets/102505925/00e42492-08a5-4f53-8ec4-b2b9432b5cac)
 
 ![biometra tokens dark](https://github.com/ShivgunGaming/biometra.net/assets/102505925/fff42670-da29-4eae-90d9-162eeadaadbf)
+
+![Biometra NEW UI T](https://github.com/ShivgunGaming/biometra-main/assets/102505925/0722bbb8-15f3-408d-9cbd-4d50bd443465)
 
 🟡 `<Tokens />` : **Login authentication and displays tokens from Ethereum Chain, soon Avalanche C Chain and Binance Smart Chain.**
 
@@ -152,12 +160,15 @@ yarn start
 
 ![nativebalance](https://github.com/ShivgunGaming/biometra.net/assets/102505925/f9917f6e-91af-420f-ae5b-231ff2abcd3d)
 
+![Biometra New UI WV](https://github.com/ShivgunGaming/biometra-main/assets/102505925/31021f37-495b-4a02-a1a4-f3d0e6a6b028)
+
 💸 `<Native Balance />` : **Login authentication and displays the native balance Ethereum Chain, soon Avalanche C Chain and Binance Smart Chain.**
 
 ![nfts](https://github.com/ShivgunGaming/biometra.net/assets/102505925/14c5a71c-4f55-4836-9463-fece708b78cb)
 
 ![nfts](https://github.com/ShivgunGaming/biometra.net/assets/102505925/938924a9-983d-46ff-92df-7684d26346c8)
 
+![Biometra New UI NFTs](https://github.com/ShivgunGaming/biometra-main/assets/102505925/f4201939-f38d-4b4e-918a-02c366a754d8)
 
 🖼️ `<NFTs />` : **Login authentication and displays the NFTs Ethereum Chain, soon Avalanche C Chain and Binance Smart Chain.**
 
