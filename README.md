@@ -81,7 +81,7 @@ Biometra is a cutting-edge web3 wallet that leverages biometric scanning technol
 
 ## ⭐️ `Tech Stack`
 
-- **Ant Design 🧙**
+- **Chakra 🧙**
 - **Moralis 🌠**
 - **Express 📜**
 - **Alchemy ✨**
@@ -154,7 +154,7 @@ yarn start
 
 ![Biometra NEW UI T](https://github.com/ShivgunGaming/biometra-main/assets/102505925/0722bbb8-15f3-408d-9cbd-4d50bd443465)
 
-🟡 `<Tokens />` : **Login authentication and displays tokens from Ethereum Chain, soon Avalanche C Chain and Binance Smart Chain.**
+🟡 `<Tokens />` : **Login authentication and displays tokens from Ethereum Chain, Avalanche C Chain and Binance Smart Chain.**
 
 ![native-balance](https://github.com/ShivgunGaming/biometra.net/assets/102505925/89dd6578-474b-4639-9435-b88588b81e09)
 
@@ -162,7 +162,7 @@ yarn start
 
 ![Biometra New UI WV](https://github.com/ShivgunGaming/biometra-main/assets/102505925/31021f37-495b-4a02-a1a4-f3d0e6a6b028)
 
-💸 `<Native Balance />` : **Login authentication and displays the native balance Ethereum Chain, soon Avalanche C Chain and Binance Smart Chain.**
+💸 `<Native Balance />` : **Login authentication and displays the native balance Ethereum Chain, Avalanche C Chain and Binance Smart Chain.**
 
 ![nfts](https://github.com/ShivgunGaming/biometra.net/assets/102505925/14c5a71c-4f55-4836-9463-fece708b78cb)
 
@@ -170,7 +170,7 @@ yarn start
 
 ![Biometra New UI NFTs](https://github.com/ShivgunGaming/biometra-main/assets/102505925/f4201939-f38d-4b4e-918a-02c366a754d8)
 
-🖼️ `<NFTs />` : **Login authentication and displays the NFTs Ethereum Chain, soon Avalanche C Chain and Binance Smart Chain.**
+🖼️ `<NFTs />` : **Login authentication and displays the NFTs Ethereum Chain, Avalanche C Chain and Binance Smart Chain.**
 
 ## Contact
 
