@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { ChakraProvider, color } from "@chakra-ui/react";
+import { ChakraProvider, color, CSSReset, extendTheme } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
 import { Select } from "antd";
 import { motion } from "framer-motion";
@@ -21,6 +21,21 @@ const App = () => {
     console.log("Face image:", image);
     console.log("Resolution:", resolution);
   };
+
+  const customTheme = extendTheme({
+    components: {
+      Select: {
+        baseStyle: {
+          _hover: {
+            borderColor: "pink",
+          },
+          _focus: {
+            borderColor: "pink",
+          },
+        },
+      },
+    },
+  });  
 
   const handleError = useCallback((error) => {
     alert(error);
@@ -80,6 +95,7 @@ const App = () => {
 
   return (
     <ChakraProvider>
+      <CSSReset />
       <div className={`App ${darkMode ? "dark" : "light"}`}>
         <header>
           <div className="headerContent">
@@ -93,8 +109,13 @@ const App = () => {
               animate="animate"
             />
             <Select
-            dropdownStyle={{ backgroundColor: '#333333', color: '#ffffff' }}
-            style={{color: '#fffff'}}
+              theme={customTheme}
+              dropdownStyle={{
+                backgroundColor: "#333333",
+                color: "#ffffff",
+                border: "1px solid pink",
+              }}
+              style={{ color: "#ffffff" }}
               onChange={handleChainChange}
               value={selectedChain}
               options={[
@@ -103,6 +124,12 @@ const App = () => {
                 { label: "Binance", value: "0x38" },
               ]}
               className={`dropdown ${darkMode ? "dark" : ""}`}
+              _hover={{
+                borderColor: "pink",
+              }}
+              _focus={{
+                borderColor: "pink",
+              }}
             />
           </div>
         </header>
@@ -111,7 +138,7 @@ const App = () => {
         </div>
       </div>
     </ChakraProvider>
-  );
+  );  
 };
 
 export default App;
