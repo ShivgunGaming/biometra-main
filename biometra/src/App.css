@@ -96,7 +96,7 @@ h2 {
 }
 
 a:visited {
-  color: blue;
+  color: pink;
 }
 
 header {
@@ -117,6 +117,11 @@ header {
 
 .dropdown {
   margin-left: -30px /* Adjust this value as needed */
+}
+
+/* Add this CSS rule to style the dropdown container on hover */
+.dropdown:hover {
+ 
 }
 
 .App.dark .dropdown .ant-select-selector,
@@ -297,6 +302,45 @@ header {
 
 :where(.css-dev-only-do-not-override-15rg2km).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   color: #d53f8c; /* Active tab text color */
+}
+
+/* Customize the color for active tab */
+.walletView .ant-tabs-tab-active {
+  color: #ff69b4; /* Change to your desired pink color */
+}
+
+/* Customize the hover color for tabs */
+.walletView .ant-tabs-tab:hover {
+  color: #ff69b4; /* Change to your desired pink color */
+}
+
+/* Customize the color for the "Tokens" tab */
+.walletView .Tokens {
+  color: #ff69b4; /* Change to your desired pink color */
+}
+
+/* Dark mode styles for active tab */
+.App.dark .walletView .ant-tabs-tab-active {
+  color: #ff69b4; /* Adjust as needed */
+}
+
+/* :where(.css-dev-only-do-not-override-15rg2km).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: 1px solid pink;
+}
+
+/*
+:where(.css-dev-only-do-not-override-15rg2km).ant-select:not(.ant-select-customize-input) .ant-select-selector:hover {
+  border-color: pink;  */ 
+
+
+.ant-select-selector:hover { border-color:1px solid red !important; }
+
+:global(.ant-dropdown-menu-item:hover) {
+  border-color: red !important;
+}
+
+:global(.ant-menu-item-selected) {
+  background-color: #ff0000 !important; /* Change to your desired color */
 }
 
 .walletView::-webkit-scrollbar {
