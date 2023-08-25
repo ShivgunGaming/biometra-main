@@ -33,9 +33,13 @@ function RecoverAccount({ setWallet, setSeedPhrase }) {
     <VStack spacing={4} align="center" p={4}>
       <VStack align="center">
         <Icon boxSize={8} color="red.500" />
-        <Text>Enter your 12 word seed phrase, seperated by spaces below to log in!</Text>
+        <Text>
+          Enter your 12 word seed phrase, seperated by spaces below to log in!
+        </Text>
       </VStack>
       <Textarea
+        focusBorderColor="pink.500"
+        borderColor="pink.500"
         value={typedSeed}
         onChange={seedAdjust}
         rows={4}
@@ -53,7 +57,11 @@ function RecoverAccount({ setWallet, setSeedPhrase }) {
       >
         Recover Wallet
       </Button>
-      {nonValid && <Text color="red.500" fontWeight="bold">Invalid Seed Phrase</Text>}
+      {nonValid && (
+        <Text color="red.500" fontWeight="bold">
+          Invalid Seed Phrase
+        </Text>
+      )}
       <Text
         color="pink.500"
         textDecoration="underline"
