@@ -96,7 +96,7 @@ h2 {
 }
 
 a:visited {
-  color: pink;
+  color: #ff69b4;
 }
 
 header {
@@ -236,7 +236,7 @@ header {
 }
 
 .ant-tabs-ink-bar {
-  border-bottom: 2px solid pink;
+  border-bottom: 2px solid #d53f8c;
 }
 
 /* Tab-specific styles */
@@ -524,4 +524,21 @@ header {
 
 :where(.css-15rg2km).ant-select-dropdown .ant-select-item {
   color: white;
+}
+
+.pink-border:hover,
+.pink-border:focus {
+  border-color: #ff69b4 !important;
+}
+
+.dropdown.dark .ant-menu-submenu-title:hover {
+  border-color: #ff69b4;
+}
+
+.ant-select-selector:hover {
+  border-color:1px solid red;
+}
+
+.ant-select-selector:hover, .ant-select-selector:focus-within {
+  border: 1px solid #ff69b4 !important;
 }
