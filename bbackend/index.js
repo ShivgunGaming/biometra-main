@@ -19,6 +19,7 @@ app.get("/getTokens", async (req, res) => {
   const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
     chain: chain,
     address: userAddress,
+    tokenId: tokenId,
     mediaItems: true,
   });
 
