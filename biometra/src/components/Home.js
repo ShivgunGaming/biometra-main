@@ -5,8 +5,7 @@ import { motion, useCycle } from "framer-motion";
 import bioname from "../biometra.png";
 import bionameDark from "../biometradark.png";
 
-// Extract the bouncing and spinning animations into constants
-const bouncingAnimation = { scale: [1, 1.2, 1] };
+// Extract the spinning animation into a constant
 const spinningAnimation = { rotate: [0, 360] };
 
 // Define animation transitions
@@ -17,20 +16,8 @@ const animationTransitions = [
 
 function Home({ darkMode }) {
   const navigate = useNavigate();
-  const [isBouncing, setIsBouncing] = useState(false);
   const [isSpinning, toggleIsSpinning] = useCycle(false, true);
   const logoImage = darkMode ? bionameDark : bioname;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsBouncing(true);
-      setTimeout(() => {
-        setIsBouncing(false);
-      }, 5000); // Bounce duration
-    }, 5000); // Repeat every 5 seconds
-
-    return () => clearInterval(interval); // Clear the interval on unmount
-  }, []);
 
   const theme = extendTheme({
     styles: {
@@ -53,15 +40,7 @@ function Home({ darkMode }) {
   });
 
   const handleImageClick = () => {
-    if (!isBouncing) {
-      setIsBouncing(true);
-      setTimeout(() => {
-        setIsBouncing(false);
-        toggleIsSpinning(); // Toggle spinning after bounce
-      }, 1000);
-    } else {
-      toggleIsSpinning(); // Toggle spinning on each click after bounce
-    }
+    toggleIsSpinning(); // Toggle spinning on image click
   };
 
   return (
@@ -82,10 +61,7 @@ function Home({ darkMode }) {
       <motion.div
         onClick={handleImageClick}
         initial={false}
-        animate={[
-          isBouncing && bouncingAnimation,
-          isSpinning && spinningAnimation,
-        ]}
+        animate={isSpinning && spinningAnimation}
         transition={animationTransitions}
       >
         <Image src={logoImage} alt="logo" maxWidth="220px" mb="7" />
